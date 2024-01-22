@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      user-select: none;
+    }
+    p {
+      color: #fff;
+      font-size: 20px;
+    }
+    body {
+      width: 80vw;
+      height: 40vh;
+      background-color: #333;
+    }
+
+    button {
+      width: 30vw;
+      height: 30vh;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Click the open url button, immediatedly hold until a new window apperas</p>
+  <p>If the bug occurs, the click event will not be triggered.</p>
+  <button id="btn">open url</button>
+
+  <button id="btn2">Test click</button>
+  <button id="btn3">fix it</button>
+  <script>
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', () => {
+      console.log('open url click');
+      window.preloadSDK.openUrl();
+    })
+    const btn2 = document.getElementById('btn2');
+    btn2.addEventListener('click', () => {
+      console.log('click btn2');
+    })
+    btn2.addEventListener('mousedown', () => {
+      console.log('mouseDown');
+    })
+    btn2.addEventListener('mouseup', () => {
+      console.log('mouseUp');
+    })
+    btn2.addEventListener('touchstart', () => {
+      console.log('touchStart');
+    })
+    btn2.addEventListener('touchend', () => {
+      console.log('touchEnd');
+    })
+    document.addEventListener('touchend', (e) => {
+      console.log('document touchEnd', e.target);
+    })
+    btn2.addEventListener('pointerdown', () => {
+      console.log('pointerDown');
+    })
+    btn2.addEventListener('pointerup', () => {
+      console.log('pointerUp');
+    })
+    const btn3 = document.getElementById('btn3');
+    btn3.addEventListener('touchend', () => {
+      console.log('touchEnd');
+      window.preloadSDK.fix(),
+      });
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "electron-touch-bug-8725",
+  "version": "1.0.0",
+  "description": "#8725 bug fix",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/dicklwm/electron-touch-bug-8725.git",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^27.0.4"
+  }
+}
