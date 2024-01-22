@@ -40,6 +40,22 @@
       console.log('!!!!!!!!open url click!!!!!!!!');
       window.preloadSDK.openUrl();
     })
+    // here is how to detect the bug, if the bug occurs, touchend will trigger.
+    btn.addEventListener('touchend', () => {
+      const timeout = setTimeout(() => {
+        console.log('fix it!!!');
+        window.preloadSDK.fix();
+        btn.removeEventListener('click', clickCallback);
+        // touchStart in the button, but touchEnd not in the button, it Shouldn't trigger click, so here we dont need to dispatch click event, let user to click again.
+        // btn.dispatchEvent(new Event('click'));
+      }, 1000);
+      const clickCallback = () => {
+        // console.log('touchEnd clickCallback');
+        btn.removeEventListener('click', clickCallback);
+        clearTimeout(timeout);
+      }
+      btn.addEventListener('click', clickCallback);
+    })
     const btn2 = document.getElementById('btn2');
     btn2.addEventListener('click', () => {
       console.log('*******Test click*******');
@@ -57,7 +73,7 @@
       console.log('touchEnd');
     })
     // document.addEventListener('touchend', (e) => {
-    //   console.log('document touchEnd', e.target);
+    //   console.log('document touchEnd', e);
     // })
     // btn2.addEventListener('pointerdown', () => {
     //   console.log('pointerDown');
